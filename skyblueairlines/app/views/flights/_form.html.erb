@@ -1,0 +1,79 @@
+<%= form_with(model: flight, local: true) do |form| %>
+  <% if flight.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(flight.errors.count, "error") %> prohibited this flight from being saved:</h2>
+
+      <ul>
+      <% flight.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flight_id %>
+    <%= form.text_field :flight_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :manufacturer %>
+    <%= form.text_field :manufacturer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :originCity %>
+    <%= form.text_field :originCity %>
+  </div>
+
+
+
+  <div class="field">
+    <%= form.label :destinationCity %>
+    <%= form.text_field :destinationCity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :capacity %>
+    <%= form.number_field :capacity %>
+  </div>
+
+
+
+  <div class="field" >
+
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+
+  </div>
+  <div class="field" >
+
+    <%= form.label :flight_cost %>
+    <%= form.number_field :flight_cost, step: :any %>
+
+  </div>
+
+  <!-- todo make it a dropdown-->
+<!--  <div class="field">-->
+    <%= form.label :flight_class %>
+    <%#= form.text_field :flight_class %>
+    <%#= select("flight class", { ["Jumbo", "Private", "Small"] })  %>
+<!--    <select name=:flight_class id=:flight_class>-->
+<!--      <option value="1">Jumbo</option>-->
+<!--      <option value="2">Private</option>-->
+<!--      <option value="3">Small</option>-->
+<!--    </select>-->
+    <%= form.select(:flight_class, options_for_select([['Jumbo'], ['Private'], ['Small']])) %>
+    <%#= select_tag(:flight_class, '<option value="1">Jumbo</option> <option value="2">Private</option> <option value="3">Small</option> ') %>
+    <%#=  %>
+<!--  </div>-->
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

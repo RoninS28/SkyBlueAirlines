@@ -1,0 +1,11 @@
+<% if current_user.email == "admin@skyblue.com"  %>
+  <p><u> Role: Admin </u></p>
+<%else %>
+  <p><b> Role : User </b></p>
+<%end  %>
+
+<h1>New Reservation</h1>
+
+<%= render 'form', reservation: @reservation %>
+
+<%= link_to 'Back', reservations_path %>

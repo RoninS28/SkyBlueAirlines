@@ -1,0 +1,75 @@
+<%= form_with(model: reservation, local: true) do |form| %>
+  <% if reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+      <% reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+
+  </div>
+
+  <div class="field">
+    <%= form.label :no_of_passengers %>
+    <%= form.number_field :no_of_passengers, :id => 'no_of_passengers',  max:@flight.capacity , min:1, onChange: "calculateTotalPrice();"  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :confirmation_number %>
+    <%= form.text_field :confirmation_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amenities %>
+    <%= form.select(:amenities, options_for_select([['None'], ['Wifi'], ['Meal Preference'], ['Extra Legroom']])) %>  </div>
+
+  <div class="field">
+    <%= form.label :ticket_class %>
+    <%= form.select(:ticket_class, options_for_select([['First'], ['Business'], ['Economy']])) %>
+  </div>
+
+  <div class="field">
+      <%= form.label :flight_id %>
+      <%= form.text_field :flight_id, value:@flight.flight_id, disabled:true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, value:current_user.name, disabled:true %>
+  </div>
+  <div class="field">
+
+      <%= form.hidden_field :flight_id, value:@flight.id, readonly:true %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :user_id, value:current_user.id, readonly:true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cost %>
+    <%= form.text_field :cost, :id => 'cost', readonly:true%>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+      function calculateTotalPrice(){
+          var price = "<%= @flight.flight_cost %>";
+          document.getElementById('cost').value = document.getElementById('no_of_passengers').value * price;
+      }
+
+  </script>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+
+
+
+<% end %>

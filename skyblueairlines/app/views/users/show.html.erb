@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<% if current_user.email == "admin@skyblue.com"  %>
+  <p><u> Role: Admin </u></p>
+<%else %>
+  <p><b> Role : User </b></p>
+<%end  %>
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Credit card number:</strong>
+  <%= @user.credit_card_number %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @user.address %>
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @user.mobile %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'home', root_path %>

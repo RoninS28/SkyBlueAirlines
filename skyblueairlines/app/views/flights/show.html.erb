@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+<% if current_user.email == "admin@skyblue.com"  %>
+  <p><u> Role: Admin </u></p>
+<%else %>
+  <p><b> Role : User </b></p>
+<%end  %>
+<p>
+  <strong>Name:</strong>
+  <%= @flight.name %>
+</p>
+
+<p>
+  <strong>Flight:</strong>
+  <%= @flight.flight_id %>
+</p>
+
+<p>
+  <strong>Manufacturer:</strong>
+  <%= @flight.manufacturer %>
+</p>
+
+<p>
+  <strong>Origincity:</strong>
+  <%= @flight.originCity %>
+</p>
+
+
+
+<p>
+  <strong>Destinationcity:</strong>
+  <%= @flight.destinationCity %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @flight.capacity %>
+</p>
+
+
+
+<p>
+  <strong>Status:</strong>
+  <%= @flight.status %>
+</p>
+
+<p>
+  <strong>Class:</strong>
+  <%= @flight.flight_class %>
+</p>
+
+<%= link_to 'Back', flights_path %>
+<% if current_user.email == "admin@skyblue.com"  %>
+  <%= link_to 'Edit', edit_flight_path(@flight) %>
+<% else %>
+  <%#= link_to 'Make Reservation', new_reservation_path(@flight) %>
+  <%= link_to_if @flight.status == 'Available', 'Reserve', new_reservation_path(:flight_id => @flight.id) %>
+<% end %>

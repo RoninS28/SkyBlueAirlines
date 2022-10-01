@@ -1,0 +1,15 @@
+<% if current_user.email == "admin@skyblue.com"  %>
+  <p><u> Role: Admin </u></p>
+<%else %>
+  <p><b> Role : User </b></p>
+<%end  %>
+
+<center>
+<h1>Search for Flights by Origin & Destination</h1>
+</center>
+
+<%= render 'formFilter', user: @user %>
+
+<%= link_to 'Home', root_path %>
+
+
